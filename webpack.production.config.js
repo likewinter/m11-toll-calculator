@@ -5,11 +5,11 @@ var webpack = require('webpack');
 module.exports = {
   entry: {
     bundle: './scripts/main.js',
-    vendors: ['vue', 'vue-resource', 'vue-router', 'lodash', 'moment']
+    vendors: ['vue', 'vue-resource', 'vue-router', 'lodash']
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    publicPath: 'http://localhost:8080/',
+    publicPath: '/',
     filename: 'js/[name].js'
   },
   module: {

@@ -17,7 +17,7 @@
         </form>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 swap-directions">
-        <button class="btn btn-primary" @click="swap">Swap</button>
+        <button class="btn btn-primary" @click="swap"> <span class="glyphicon glyphicon-transfer"></span></button>
     </div>
     <div class="col-lg-5 col-md-5 col-sm-5">
         <form>
@@ -32,8 +32,6 @@
 </template>
 
 <script>
-    import {omit} from 'lodash';
-
     export default {
         props: {
             directions: {

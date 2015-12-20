@@ -15,17 +15,19 @@
 </style>
 
 <template>
-    <div class="trip-selector row">
-        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-            <div class="row">
-                <direction-selector :directions="directions" :direction="trip.direction" v-on:update-direction="handleDirection" v-on:swap="swapDirections"></direction-selector>
+    <div class="trip-selector panel panel-default">
+        <div class="panel-body">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <div class="row">
+                    <direction-selector :directions="directions" :direction="trip.direction" v-on:update-direction="handleDirection" v-on:swap="swapDirections"></direction-selector>
+                </div>
+                <div class="row">
+                    <time-selector :show-current-time="false" :time="trip.time" v-on:update-time="handleTime"></time-selector>
+                </div>
             </div>
-            <div class="row">
-                <time-selector :show-current-time="false" :time="trip.time" v-on:update-time="handleTime"></time-selector>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+                <button class="btn btn-danger remove" @click="removeTrip"><span class="glyphicon glyphicon-trash"></span></button>
             </div>
-        </div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <button class="btn btn-danger remove" @click="removeTrip">Remove</button>
         </div>
     </div>
 </template>
@@ -33,44 +35,37 @@
 <script>
     import DirectionSelector from './selectors/direction';
     import TimeSelector from './selectors/time';
+    import store from '../store';
 
     export default {
         props: {
-            directions: {
-                required: true,
-                default: [],
-                type: Array
-            },
-            tripId: {
-                required: true,
-                type: Number
-            },
             trip: {
                 required: true,
                 type: Object
+            },
+            index: {
+                required: true,
+                type: Number
+            }
+        },
+        computed: {
+            directions() {
+                return store.state.directions;
             }
         },
         components: {TimeSelector, DirectionSelector},
         methods: {
             swapDirections() {
-                this.update({
-                    direction: {
-                        from: this.trip.direction.to,
-                        to: this.trip.direction.from
-                    }
-                });
+                store.actions.swapDirections(this.index);
             },
             handleDirection(direction) {
-                this.update({direction: {...this.trip.direction, ...direction}})
+                store.actions.updateTrip(this.index, {direction});
             },
             handleTime(time) {
-                this.update({time: {...this.trip.time, ...time}});
-            },
-            update(trip) {
-                this.$dispatch('trip', this.tripId, trip);
+                store.actions.updateTrip(this.index, {time});
             },
             removeTrip() {
-                this.$dispatch('trip-remove', this.tripId);
+                store.actions.removeTrip(this.index);
             }
         }
     }

@@ -24,15 +24,7 @@
 
 <script>
     import {weekDays as weekDaysDict} from 'assets/constants/dates_dict';
-    import {capitalize} from 'lodash';
-
-    let zeroPad = num => {
-        return (num < 10 ? '0' : '') + num;
-    }
-
-    let zeroPadHours = hours => {
-        return zeroPad(hours) + ':00';
-    }
+    import {zeroPadHours, getNextTime} from 'assets/utils';
 
     export default {
         data() {
@@ -51,30 +43,14 @@
                 required: true
             }
         },
-        computed: {
-            choosenTime() {
-                const hours = zeroPadHours(this.time.hours);
-                const dayOfWeek = capitalize(this.weekDaysDict[this.time.day]);
-
-                return `${hours} ${dayOfWeek}`;
-            }
-        },
         filters: {
             zeroPadHours
         },
         methods: {
-            refreshCurrentTime() {
-                const currentTime = new Date();
-                const roundedHours = Math.round(currentTime.getHours() + currentTime.getMinutes() / 60);
-                let currentHours = roundedHours;
-                let currentDay = currentTime.getDay();
+            refreshCurrentTime(e) {
+                if (!e.target.checked) return;
 
-                if (roundedHours === 24) {
-                    currentHours = 0;
-                    currentDay = (currentDay === 6) ? 0 : currentDay;
-                }
-
-                this.updateTime({hours: currentHours, day: currentDay});
+                this.updateTime(getNextTime());
             },
             updateHours(e) {
                 let hours = parseInt(e.target.value, 10);

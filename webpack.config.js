@@ -18,7 +18,7 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue'
       }, {
-        test: /\.es6$/,
+        test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel',
         query: {
@@ -34,7 +34,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['', '.vue', '.es6', '.js'],
+    extensions: ['', '.vue', '.js'],
     alias: {
       'assets': path.resolve(__dirname, 'assets'),
       'components': path.resolve(__dirname, 'assets/components')

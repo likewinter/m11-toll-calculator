@@ -1,13 +1,28 @@
-<style scoped>
-    p.costs {
-        font-size: 3em;
+<style lang="less" scoped>
+    div.costs {
+        margin-top: 15px;
+
+        p.info {
+            padding-top: 10px;
+            padding-bottom: 15px;
+            font-size: 1.8em;
+
+            span {
+                position: relative;
+
+                sub {
+                    position: absolute;
+                    left: -0.2em;
+                    font-size: 0.4em;
+                }
+            }
+        }
     }
 </style>
 <template>
-    <div class="row text-center">
-        <p class="costs">
-            <span><span class="glyphicon glyphicon-road"></span> {{costs.total}}&#8381;</span>
-            <span> / {{costs.transponderTotal}}&#8381;</span>
+    <div class="row costs">
+        <p class="text-center bg-info info">
+            {{costs.total}}&#8381; / <span>{{costs.transponderTotal}}&#8381; <sub><em>транспондер</em></sub></span>
         </p>
     </div>
 </template>

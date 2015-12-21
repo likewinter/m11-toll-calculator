@@ -1,6 +1,6 @@
 <template>
-    <costs></costs>
     <trip-list></trip-list>
+    <costs></costs>
 </template>
 
 <script>

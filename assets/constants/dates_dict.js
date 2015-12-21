@@ -1,9 +1,9 @@
 export const weekDays = {
-  1: 'monday',
-  2: 'tuesday',
-  3: 'wendsday',
-  4: 'thursday',
-  5: 'friday',
-  6: 'sutturday',
-  7: 'sunday',
+  1: 'понедельник',
+  2: 'вторник',
+  3: 'среда',
+  4: 'четверг',
+  5: 'пятница',
+  6: 'суббота',
+  7: 'воскресенье',
 };

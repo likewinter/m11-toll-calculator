@@ -1,4 +1,8 @@
 export const costs = (tripList, rates) => {
+    const defaultCosts = {total: 0, transponderTotal: 0};
+    
+    if (!rates.length) return defaultCosts;
+
     return tripList.reduce((costs, trip) => {
         const quantity = trip.quantity || 1;
         const [{tarif: directionRates}] = _.where(rates, {...trip.direction});
@@ -16,5 +20,5 @@ export const costs = (tripList, rates) => {
         costs.transponderTotal += applicableRate[1] * quantity;
 
         return costs;
-    }, {total: 0, transponderTotal: 0});
+    }, defaultCosts);
 };

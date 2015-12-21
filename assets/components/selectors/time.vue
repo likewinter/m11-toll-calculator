@@ -15,12 +15,12 @@
             </label>
         </div>
         <div class="row">
-            <div class="col-xs-4 col-xs-offset-2">
+            <div class="col-xs-5 col-xs-offset-1">
                 <select class="form-control input-sm" name="hours" :disabled="useCurrentTime" @change="updateHours">
                     <option :value="hour" v-for="hour in 24" :selected="hour == time.hours">{{hour | zeroPadHours}}</option>
                 </select>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-5">
                 <select class="form-control input-sm" name="day" :disabled="useCurrentTime" @change="updateDay">
                     <option :value="day" v-for="(day, name) in weekDaysDict" :selected="day == time.day">{{name | capitalize}}</option>
                 </select>

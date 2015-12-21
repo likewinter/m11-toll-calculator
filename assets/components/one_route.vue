@@ -1,5 +1,8 @@
 <template>
     <costs></costs>
+    <div class="row">
+        <p class="text-center bg-warning">В разработке</p>
+    </div>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <style lang="less" scoped>
     .trip-selector {
         margin-top: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         position: relative;
 
         button.remove {

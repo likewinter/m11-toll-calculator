@@ -1,4 +1,4 @@
-export const costs = (tripList, rates, options = {price: 0}) => {
+export const costs = (tripList, rates) => {
     return tripList.reduce((costs, trip) => {
         const quantity = trip.quantity || 1;
         const [{tarif: directionRates}] = _.where(rates, {...trip.direction});
@@ -12,9 +12,9 @@ export const costs = (tripList, rates, options = {price: 0}) => {
 
             return (trip.time.day >= rate.days[0]) && (trip.time.day <= rate.days[1]);
         });
-        costs.total += applicableRate[options.price] * quantity;
-        costs.discount += options.price === 1 ? applicableRate[0] - applicableRate[1] : 0;
+        costs.total += applicableRate[0] * quantity;
+        costs.transponderTotal += applicableRate[1] * quantity;
 
         return costs;
-    }, {total: 0, discount: 0});
+    }, {total: 0, transponderTotal: 0});
 };

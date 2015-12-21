@@ -1,28 +1,52 @@
 <style lang="less" scoped>
+    @import "~bootstrap/less/variables.less";
+    
+    @media (min-width: @screen-xs-max) {
+        .swap-directions {
+            padding-top: 1.8em;
+        }
+    }
+
+    @media (max-width: @screen-xs-max) {
+        .swap-directions {
+            margin-top:7px;
+            margin-bottom: 7px;
+
+            button {
+                width: 98%;
+                .glyphicon {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+        .form-group {
+            margin-bottom: 0;
+        }
+    }
+
     .swap-directions {
         text-align: center;
-        padding-top: 1.8em;
     }
 </style>
 
 <template>
-    <div class="col-lg-5 col-md-5 col-sm-5">
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
         <form>
             <div class="form-group">
-                <label for="direction-start">From</label>
+                <label class="hidden-xs" for="direction-start">From</label>
                 <select class="form-control" @change="updateFrom">
                     <option v-for="name in directions | removeItem direction.to" :value="name" :selected="name == direction.from">{{name}}</option>
                 </select>
             </div>
         </form>
     </div>
-    <div class="col-lg-2 col-md-2 col-sm-2 swap-directions">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 swap-directions">
         <button class="btn btn-primary" @click="swap"> <span class="glyphicon glyphicon-transfer"></span></button>
     </div>
-    <div class="col-lg-5 col-md-5 col-sm-5">
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
         <form>
             <div class="form-group">
-                <label for="direction-end">To</label>
+                <label class="hidden-xs" for="direction-end">To</label>
                 <select class="form-control" @change="updateTo">
                     <option v-for="name in directions | removeItem direction.from" :value="name" :selected="name == direction.to">{{name}}</option>
                 </select>

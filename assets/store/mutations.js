@@ -3,6 +3,7 @@ import {merge} from 'lodash';
 const ADD_TRIP = 'ADD_TRIP';
 const REMOVE_TRIP = 'REMOVE_TRIP';
 const UPDATE_TRIP = 'UPDATE_TRIP';
+const CLEAN_TRIPS = 'CLEAN_TRIPS';
 
 export default {
   [ADD_TRIP](state, trip) {
@@ -13,5 +14,8 @@ export default {
   },
   [UPDATE_TRIP](state, index, trip) {
     state.tripList.$set(index, merge(state.tripList[index], trip));
+  },
+  [CLEAN_TRIPS](state) {
+    state.tripList = [];
   },
 };

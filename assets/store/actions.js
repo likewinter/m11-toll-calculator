@@ -3,6 +3,7 @@ import {getDefaultTrip} from '../utils';
 export default {
   removeTrip: 'REMOVE_TRIP',
   updateTrip: 'UPDATE_TRIP',
+  cleanTrips: 'CLEAN_TRIPS',
   addDefaultTrip({dispatch}) {
     dispatch('ADD_TRIP', getDefaultTrip());
   },

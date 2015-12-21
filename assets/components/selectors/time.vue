@@ -1,23 +1,30 @@
 <style lang="less" scoped>
+    .time-selector {
+        margin-top: 5px;
+    }
     div.checkbox {
         margin-top: 0;
-    }    
+    }
 </style>
 
 <template>
-    <div class="text-center">
+    <div class="time-selector text-center col-lg-12 col-md-12 col-xs-12 col-sm-12">
         <div class="checkbox" v-if="showCurrentTime">
             <label>
                 <input type="checkbox" v-model="useCurrentTime" @change="refreshCurrentTime"> Next hour
             </label>
         </div>
-        <div class="form-inline">
-            <select class="form-control input-sm" name="hours" :disabled="useCurrentTime" @change="updateHours">
-                <option :value="hour" v-for="hour in 24" :selected="hour == time.hours">{{hour | zeroPadHours}}</option>
-            </select>
-            <select class="form-control input-sm" name="day" :disabled="useCurrentTime" @change="updateDay">
-                <option :value="day" v-for="(day, name) in weekDaysDict" :selected="day == time.day">{{name | capitalize}}</option>
-            </select>
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-2">
+                <select class="form-control input-sm" name="hours" :disabled="useCurrentTime" @change="updateHours">
+                    <option :value="hour" v-for="hour in 24" :selected="hour == time.hours">{{hour | zeroPadHours}}</option>
+                </select>
+            </div>
+            <div class="col-xs-4">
+                <select class="form-control input-sm" name="day" :disabled="useCurrentTime" @change="updateDay">
+                    <option :value="day" v-for="(day, name) in weekDaysDict" :selected="day == time.day">{{name | capitalize}}</option>
+                </select>
+            </div>
         </div>
     </div>
 </template>

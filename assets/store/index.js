@@ -15,7 +15,7 @@ const state = {
   tripList: [],
 };
 
-Vue.http.get('/json/tarifs.json', (data) => {
+Vue.http.get('json/tarifs.json', (data) => {
   state.rates = data;
   state.directions = _(data).pluck('from', 'to').uniq().value();
 });

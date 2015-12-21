@@ -1,3 +1,8 @@
+<style>
+    .collapse { transition: height .3s ease-out; -webkit-transition: height .3s ease-out } 
+    .popover .close { position: absolute; top: 7px; right: 10px; }
+</style>
+
 <template>
     <div class="container">
         <div class="row">
@@ -24,3 +29,13 @@
         <router-view></router-view>
     </div>
 </template>
+
+<script>
+    import {collapse} from 'bootstrap.native';
+    
+    export default {
+        ready() {
+            new collapse('[data-toggle="collapse"]', {duration: 300});
+        }
+    }
+</script>

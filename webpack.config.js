@@ -5,7 +5,7 @@ var webpack = require('webpack');
 module.exports = {
   entry: {
     bundle: './scripts/main.js',
-    vendors: ['vue', 'vue-resource', 'vue-router', 'lodash']
+    vendors: ['vue', 'vue-resource', 'vue-router', 'lodash', 'bootstrap.native']
   },
   output: {
     path: path.resolve(__dirname, 'public'),

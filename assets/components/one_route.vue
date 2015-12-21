@@ -1,3 +1,20 @@
 <template>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum sit sed quos reiciendis iure iste ipsum dolorem nam esse eligendi eos dolorum blanditiis unde, tempora ex, id minus et illum!</p>
+    <costs></costs>
 </template>
+
+<script>
+    import Costs from './costs';
+    import store from '../store';
+
+    const {cleanTrips} = store.actions;
+
+    export default {
+        components: {Costs},
+        ready() {
+            this.cleanTrips();
+        },
+        methods: {
+            cleanTrips
+        }
+    }
+</script>

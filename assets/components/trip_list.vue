@@ -3,7 +3,7 @@
         <trip v-for="trip in tripList" :trip="trip" :index="$index" track-by="$index"></trip>
     </div>
     <div class="row">
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-10 col-sm-offset-10 col-md-offset-10 col-lg-offset-10">
+        <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-xs-offset-8 col-sm-offset-8 col-md-offset-10 col-lg-offset-10">
             <button class="btn btn-success" @click="addTrip">Add new</button>
         </div>
     </div>

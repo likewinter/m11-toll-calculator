@@ -1,6 +1,11 @@
 <style>
     .collapse { transition: height .3s ease-out; -webkit-transition: height .3s ease-out } 
     .popover .close { position: absolute; top: 7px; right: 10px; }
+    footer {
+        color: #CCC;
+        margin-top: 10px;
+        font-size: .9em;
+    }
 </style>
 
 <template>
@@ -15,7 +20,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" v-link="{path: '/'}">M11 Калькулятор</a>
+                    <a class="navbar-brand" v-link="{path: '/'}">M11 <span class="glyphicon glyphicon-road"></span> Калькулятор</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -27,15 +32,18 @@
             </nav>
         </div>
         <router-view></router-view>
+        <footer class="text-right">
+            &copy; 2015 Anton Orlov <a href="mailto:anton@pinked.ru">anton@pinked.ru</a>
+        </footer>
     </div>
 </template>
 
 <script>
-    import {collapse} from 'bootstrap.native';
-    
-    export default {
-        ready() {
-            new collapse('[data-toggle="collapse"]', {duration: 300});
-        }
-    }
+  import {collapse} from 'bootstrap.native';
+  
+  export default {
+    ready() {
+      new collapse('[data-toggle="collapse"]', {duration: 300});
+    },
+  };
 </script>

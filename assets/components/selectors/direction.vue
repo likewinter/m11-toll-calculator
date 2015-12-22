@@ -56,35 +56,35 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            directions: {
-                type: Array,
-                required: true
-            },
-            direction: {
-                type: Object,
-                required: true
-            }
-        },
-        methods: {
-            swap() {
-                this.$dispatch('swap');
-            },
-            updateDirection(direction) {
-                this.$dispatch('update-direction', direction);
-            },
-            updateFrom(e) {
-                this.updateDirection({from: e.target.value});
-            },
-            updateTo(e) {
-                this.updateDirection({to: e.target.value});
-            }
-        },
-        filters: {
-            removeItem(arr, remove) {
-                return arr.filter(item => item !== remove);
-            }
-        }
-    }
+  export default {
+    props: {
+      directions: {
+        type: Array,
+        required: true,
+      },
+      direction: {
+        type: Object,
+        required: true,
+      },
+    },
+    methods: {
+      swap() {
+        this.$dispatch('swap');
+      },
+      updateDirection(direction) {
+        this.$dispatch('update-direction', direction);
+      },
+      updateFrom(e) {
+        this.updateDirection({from: e.target.value});
+      },
+      updateTo(e) {
+        this.updateDirection({to: e.target.value});
+      },
+    },
+    filters: {
+      removeItem(arr, remove) {
+        return arr.filter(item => item !== remove);
+      },
+    },
+  };
 </script>

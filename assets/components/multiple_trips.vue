@@ -4,10 +4,10 @@
 </template>
 
 <script>
-    import TripList from './trip_list';
-    import Costs from './costs';
+  import TripList from './trip_list';
+  import Costs from './costs';
 
-    export default {
-        components: {TripList, Costs}
-    }
+  export default {
+    components: {TripList, Costs},
+  };
 </script>

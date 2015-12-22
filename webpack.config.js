@@ -1,6 +1,32 @@
+/*eslint-env es6 */
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 var webpack = require('webpack');
+var isProduction = process.env.NODE_ENV === 'production';
+
+var plugins = [];
+var pluginsCommon = [
+    new ExtractTextPlugin('css/styles.css'),
+    new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js')
+];
+if (isProduction) {
+  plugins = [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    ...pluginsCommon
+  ]
+}
+
+var publicPath = isProduction ? '/m11/' : 'http://localhost:8080/';
 
 module.exports = {
   entry: {
@@ -9,7 +35,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    publicPath: 'http://localhost:8080/',
+    publicPath,
     filename: 'js/[name].js'
   },
   module: {
@@ -25,8 +51,8 @@ module.exports = {
           presets: ['stage-0', 'es2015']
         }
       }, {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract('css!less')
       }, {
         test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file?name=fonts/[name].[ext]'
@@ -34,16 +60,13 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['', '.vue', '.js'],
+    extensions: ['', '.vue', '.js', '.less'],
     alias: {
       'assets': path.resolve(__dirname, 'assets'),
       'components': path.resolve(__dirname, 'assets/components')
     }
   },
-  plugins: [
-    new ExtractTextPlugin('css/styles.css'),
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js')
-  ],
+  plugins,
   babel: {
     presets: ['es2015', 'stage-0'],
     plugins: ['transform-runtime']

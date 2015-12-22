@@ -1,23 +1,22 @@
 <style lang="less" scoped>
-    .trip-selector {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        position: relative;
+.trip-selector {
+    margin: 10px;
+    position: relative;
 
-        button.remove {
-            margin-top: 1.8em;
-            opacity: 0.5;
+    button.remove {
+        margin-top: 1.8em;
+        opacity: 0.5;
 
-            &:hover {
-                opacity: 1;
-            }
-        }
-        button.close {
-            position: absolute;
-            top: 1px;
-            right: 4px;
+        &:hover {
+            opacity: 1;
         }
     }
+    button.close {
+        position: absolute;
+        top: 1px;
+        right: 4px;
+    }
+}
 </style>
 
 <template>
@@ -40,40 +39,40 @@
 </template>
 
 <script>
-    import DirectionSelector from './selectors/direction';
-    import TimeSelector from './selectors/time';
-    import store from '../store';
+  import DirectionSelector from './selectors/direction';
+  import TimeSelector from './selectors/time';
+  import store from '../store';
 
-    export default {
-        props: {
-            trip: {
-                required: true,
-                type: Object
-            },
-            index: {
-                required: true,
-                type: Number
-            }
-        },
-        computed: {
-            directions() {
-                return store.state.directions;
-            }
-        },
-        components: {TimeSelector, DirectionSelector},
-        methods: {
-            swapDirections() {
-                store.actions.swapDirections(this.index);
-            },
-            handleDirection(direction) {
-                store.actions.updateTrip(this.index, {direction});
-            },
-            handleTime(time) {
-                store.actions.updateTrip(this.index, {time});
-            },
-            removeTrip() {
-                store.actions.removeTrip(this.index);
-            }
-        }
-    }
+  export default {
+    props: {
+      trip: {
+        required: true,
+        type: Object,
+      },
+      index: {
+        required: true,
+        type: Number,
+      },
+    },
+    computed: {
+      directions() {
+        return store.state.directions;
+      },
+    },
+    components: {TimeSelector, DirectionSelector},
+    methods: {
+      swapDirections() {
+        store.actions.swapDirections(this.index);
+      },
+      handleDirection(direction) {
+        store.actions.updateTrip(this.index, {direction});
+      },
+      handleTime(time) {
+        store.actions.updateTrip(this.index, {time});
+      },
+      removeTrip() {
+        store.actions.removeTrip(this.index);
+      },
+    },
+  };
 </script>

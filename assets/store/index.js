@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import mutations from './mutations';
 import actions from './actions';
+import {SET_DIRECTIONS, SET_RATES} from './mutation-types';
 
 Vue.use(Vuex);
 Vue.use(VueResource);
@@ -15,11 +16,16 @@ const state = {
   tripList: [],
 };
 
-Vue.http.get('json/tarifs.json', (data) => {
-  state.rates = data;
-  state.directions = _(data).pluck('from', 'to').uniq().value();
+const store = new Vuex.Store({
+  state,
+  actions,
+  mutations,
+  strict: process.env.NODE_ENV !== 'production',
 });
 
-const store = new Vuex.Store({state, actions, mutations});
+Vue.http.get('json/tarifs.json', (data) => {
+  store.dispatch(SET_RATES, data);
+  store.dispatch(SET_DIRECTIONS, _(data).pluck('from', 'to').uniq().value());
+});
 
 export default store;

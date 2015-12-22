@@ -28,20 +28,20 @@
 </template>
 
 <script>
-    import store from '../store';
-    import {costs as calculateCosts} from '../utils/calculator';
+  import store from '../store';
+  import {calculateCosts} from '../utils/calculator';
 
-    export default {
-        computed: {
-            costs() {
-                return calculateCosts(this.tripList, this.rates);
-            },
-            rates() {
-                return store.state.rates;
-            },
-            tripList() {
-                return store.state.tripList;
-            }
-        }
-    }
+  export default {
+    computed: {
+      costs() {
+        return calculateCosts(this.tripList, this.rates);
+      },
+      rates() {
+        return store.state.rates;
+      },
+      tripList() {
+        return store.state.tripList;
+      },
+    },
+  };
 </script>

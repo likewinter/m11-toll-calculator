@@ -1,24 +1,26 @@
-export const costs = (tripList, rates) => {
-    const defaultCosts = {total: 0, transponderTotal: 0};
-    
-    if (!rates.length) return defaultCosts;
+import {where} from 'lodash';
 
-    return tripList.reduce((costs, trip) => {
-        const quantity = trip.quantity || 1;
-        const [{tarif: directionRates}] = _.where(rates, {...trip.direction});
-        const [{tarif: hourRates}] = directionRates.filter(rate => {
-            const [fromHours, tillHours] = [rate.from.split(':')[0], rate.till.split(':')[0]];
+export const calculateCosts = (tripList, rates) => {
+  const defaultCosts = {total: 0, transponderTotal: 0};
 
-            return (trip.time.hours >= fromHours) && (trip.time.hours < tillHours);
-        });
-        const [{prices: applicableRate}] = hourRates.filter(rate => {
-            if (rate.days.length === 1) return trip.time.day == rate.days[0];
+  if (!rates.length) return defaultCosts;
 
-            return (trip.time.day >= rate.days[0]) && (trip.time.day <= rate.days[1]);
-        });
-        costs.total += applicableRate[0] * quantity;
-        costs.transponderTotal += applicableRate[1] * quantity;
+  return tripList.reduce((costs, trip) => {
+    const quantity = trip.quantity || 1;
+    const [{tarif: directionRates}] = where(rates, {...trip.direction});
+    const [{tarif: hourRates}] = directionRates.filter(rate => {
+      const [fromHours, tillHours] = [rate.from.split(':')[0], rate.till.split(':')[0]];
 
-        return costs;
-    }, defaultCosts);
+      return (trip.time.hours >= fromHours) && (trip.time.hours < tillHours);
+    });
+    const [{prices: applicableRate}] = hourRates.filter(rate => {
+      if (rate.days.length === 1) return trip.time.day === rate.days[0];
+
+      return (trip.time.day >= rate.days[0]) && (trip.time.day <= rate.days[1]);
+    });
+    costs.total += applicableRate[0] * quantity;
+    costs.transponderTotal += applicableRate[1] * quantity;
+
+    return costs;
+  }, defaultCosts);
 };

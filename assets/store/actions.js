@@ -4,15 +4,17 @@ import * as types from './mutation-types';
 export default {
   removeTrip: types.REMOVE_TRIP,
   updateTrip: types.UPDATE_TRIP,
-  cleanTrips: types.CLEAN_TRIPS,
-  addDefaultTrip({dispatch}) {
-    dispatch(types.ADD_TRIP, getDefaultTrip());
+  cleanList: types.CLEAN_LIST,
+  cleanAllLists: types.CLEAN_ALL_LISTS,
+  addTripList: types.ADD_TRIP_LIST,
+  addDefaultTrip({dispatch}, listName) {
+    dispatch(types.ADD_TRIP, listName, getDefaultTrip());
   },
-  swapDirections({dispatch, state: {tripList}}, index) {
-    dispatch(types.UPDATE_TRIP, index, {
+  swapDirections({dispatch, state: {tripLists}}, listName, index) {
+    dispatch(types.UPDATE_TRIP, listName, index, {
       direction: {
-        from: tripList[index].direction.to,
-        to: tripList[index].direction.from,
+        from: tripLists[listName][index].direction.to,
+        to: tripLists[listName][index].direction.from,
       },
     });
   },

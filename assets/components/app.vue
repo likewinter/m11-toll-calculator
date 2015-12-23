@@ -31,7 +31,7 @@
                 </div><!-- /.navbar-collapse -->
             </nav>
         </div>
-        <router-view></router-view>
+        <router-view keep-alive></router-view>
         <footer class="text-right">
             &copy; 2015 Anton Orlov <a href="mailto:anton@pinked.ru">anton@pinked.ru</a>
         </footer>

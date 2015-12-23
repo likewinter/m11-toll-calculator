@@ -1,5 +1,5 @@
 <template>
-    <costs></costs>
+    <costs :list-name="listName"></costs>
     <div class="row">
         <p class="text-center bg-warning">В разработке</p>
     </div>
@@ -9,13 +9,15 @@
   import Costs from './costs';
   import store from '../store';
 
-  const {cleanTrips} = store.actions;
+  const listName = 'one_route';
 
   export default {
     components: {Costs},
-    ready() {
-      this.cleanTrips();
+    data() {
+      return {listName};
     },
-    methods: {cleanTrips},
+    created() {
+      store.actions.addTripList(listName);
+    },
   };
 </script>

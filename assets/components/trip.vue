@@ -53,6 +53,7 @@
         required: true,
         type: Number,
       },
+      listName: {},
     },
     computed: {
       directions() {
@@ -62,16 +63,16 @@
     components: {TimeSelector, DirectionSelector},
     methods: {
       swapDirections() {
-        store.actions.swapDirections(this.index);
+        store.actions.swapDirections(this.listName, this.index);
       },
       handleDirection(direction) {
-        store.actions.updateTrip(this.index, {direction});
+        store.actions.updateTrip(this.listName, this.index, {direction});
       },
       handleTime(time) {
-        store.actions.updateTrip(this.index, {time});
+        store.actions.updateTrip(this.listName, this.index, {time});
       },
       removeTrip() {
-        store.actions.removeTrip(this.index);
+        store.actions.removeTrip(this.listName, this.index);
       },
     },
   };

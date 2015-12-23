@@ -13,7 +13,7 @@ Vue.use(VueResource);
 const state = {
   rates: [],
   directions: [],
-  tripList: [],
+  tripLists: {},
 };
 
 const store = new Vuex.Store({

@@ -24,6 +24,8 @@ if (isProduction) {
     }),
     ...pluginsCommon
   ]
+} else {
+  plugins = pluginsCommon;
 }
 
 var publicPath = isProduction ? '/m11/' : 'http://localhost:8080/';

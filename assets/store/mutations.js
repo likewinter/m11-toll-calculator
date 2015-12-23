@@ -1,18 +1,24 @@
-import {merge} from 'lodash';
+import {merge, extend} from 'lodash';
 import * as types from './mutation-types';
 
 export default {
-  [types.ADD_TRIP](state, trip) {
-    return state.tripList.push(trip);
+  [types.ADD_TRIP_LIST](state, listName) {
+    state.tripLists = extend({}, state.tripLists, {[listName]: []});
   },
-  [types.REMOVE_TRIP](state, index) {
-    state.tripList.splice(index, 1);
+  [types.ADD_TRIP](state, listName, trip) {
+    state.tripLists[listName].push(trip);
   },
-  [types.UPDATE_TRIP](state, index, trip) {
-    state.tripList.$set(index, merge(state.tripList[index], trip));
+  [types.REMOVE_TRIP](state, listName, index) {
+    state.tripLists[listName].splice(index, 1);
   },
-  [types.CLEAN_TRIPS](state) {
-    state.tripList = [];
+  [types.UPDATE_TRIP](state, listName, index, trip) {
+    state.tripLists[listName].$set(index, merge(state.tripLists[listName][index], trip));
+  },
+  [types.CLEAN_LIST](state, listName) {
+    state.tripLists[listName] = [];
+  },
+  [types.CLEAN_ALL_LISTS](state) {
+    state.tripLists = [];
   },
   [types.SET_RATES](state, rates) {
     state.rates = rates;

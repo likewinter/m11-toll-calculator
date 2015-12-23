@@ -32,6 +32,7 @@
   import {calculateCosts} from '../utils/calculator';
 
   export default {
+    props: ['listName'],
     computed: {
       costs() {
         return calculateCosts(this.tripList, this.rates);
@@ -40,7 +41,7 @@
         return store.state.rates;
       },
       tripList() {
-        return store.state.tripList;
+        return store.state.tripLists[this.listName];
       },
     },
   };

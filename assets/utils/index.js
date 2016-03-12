@@ -9,23 +9,21 @@ export const getNextTime = () => {
     day = (day === 7) ? 1 : day;
   }
 
-  return {hours, day};
+  return { hours, day };
 };
 
 export const getDefaultTrip = () => {
-  return {
+  const trip = {
     direction: {
       from: 'Москва',
       to: 'Шереметьево',
     },
     time: getNextTime(),
   };
+
+  return trip;
 };
 
-export const zeroPad = num => {
-  return (num < 10 ? '0' : '') + num;
-};
+export const zeroPad = num => (num < 10 ? '0' : '') + num;
 
-export const zeroPadHours = hours => {
-  return zeroPad(hours) + ':00';
-};
+export const zeroPadHours = hours => `${zeroPad(hours)}:00`;

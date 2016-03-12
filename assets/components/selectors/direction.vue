@@ -75,10 +75,10 @@
         this.$dispatch('update-direction', direction);
       },
       updateFrom(e) {
-        this.updateDirection({from: e.target.value});
+        this.updateDirection({ from: e.target.value });
       },
       updateTo(e) {
-        this.updateDirection({to: e.target.value});
+        this.updateDirection({ to: e.target.value });
       },
     },
     filters: {

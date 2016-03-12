@@ -30,8 +30,8 @@
 </template>
 
 <script>
-  import {weekDays as weekDaysDict} from 'assets/constants/dates_dict';
-  import {zeroPadHours, getNextTime} from 'assets/utils';
+  import { weekDays as weekDaysDict } from 'assets/constants/dates_dict';
+  import { zeroPadHours, getNextTime } from 'assets/utils';
 
   export default {
     data() {
@@ -50,7 +50,7 @@
         required: true,
       },
     },
-    filters: {zeroPadHours},
+    filters: { zeroPadHours },
     methods: {
       refreshCurrentTime(e) {
         if (!e.target.checked) return;
@@ -59,11 +59,11 @@
       },
       updateHours(e) {
         const hours = parseInt(e.target.value, 10);
-        this.updateTime({hours});
+        this.updateTime({ hours });
       },
       updateDay(e) {
         const day = parseInt(e.target.value, 10);
-        this.updateTime({day});
+        this.updateTime({ day });
       },
       updateTime(time) {
         this.$dispatch('update-time', time);

@@ -1,5 +1,5 @@
 <style>
-    .collapse { transition: height .3s ease-out; -webkit-transition: height .3s ease-out } 
+    .collapse { transition: height .3s ease-out; } 
     .popover .close { position: absolute; top: 7px; right: 10px; }
     footer {
         color: #CCC;
@@ -39,11 +39,22 @@
 </template>
 
 <script>
-  import {collapse} from 'bootstrap.native';
+  import { collapse } from 'bootstrap.native';
+  import store from '../store';
+  import { getInitialData } from '../store/actions';
   
   export default {
+    store,
+    vuex: {
+      actions: {
+        getInitialData,
+      },
+    },
+    created() {
+      this.getInitialData();
+    },
     ready() {
-      new collapse('[data-toggle="collapse"]', {duration: 300});
+      new collapse('[data-toggle="collapse"]', { duration: 300 });
     },
   };
 </script>

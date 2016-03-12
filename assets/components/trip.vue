@@ -21,20 +21,22 @@
 
 <template>
     <div class="trip-selector panel panel-default">
+        <slot name="header"></slot>
         <div class="panel-body">
             <button type="button" class="close visible-xs-block" aria-label="Remove" @click="removeTrip"><span aria-hidden="true">&times;</span></button>
             <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
                 <div class="row">
-                    <direction-selector :directions="directions" :direction="trip.direction" v-on:update-direction="handleDirection" v-on:swap="swapDirections"></direction-selector>
+                    <direction-selector :directions="directions" :direction="trip.direction" v-on:update-direction="handleDirection" v-on:swap="swapDirections(listName, index)"></direction-selector>
                 </div>
                 <div class="row">
                     <time-selector :show-current-time="false" :time="trip.time" v-on:update-time="handleTime"></time-selector>
                 </div>
             </div>
             <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 text-center hidden-xs">
-                <button class="btn btn-danger remove" @click="removeTrip"><span class="glyphicon glyphicon-trash"></span></button>
+                <button class="btn btn-danger remove" @click="removeTrip(listName, index)"><span class="glyphicon glyphicon-trash"></span></button>
             </div>
         </div>
+        <slot name="footer"></slot>
     </div>
 </template>
 
@@ -42,6 +44,7 @@
   import DirectionSelector from './selectors/direction';
   import TimeSelector from './selectors/time';
   import store from '../store';
+  import { swapDirections, updateTrip, removeTrip } from '../store/actions';
 
   export default {
     props: {
@@ -55,25 +58,25 @@
       },
       listName: {},
     },
-    computed: {
-      directions() {
-        return store.state.directions;
+    store,
+    vuex: {
+      getters: {
+        directions: state => state.directions,
+      },
+      actions: {
+        swapDirections,
+        updateTrip,
+        removeTrip,
       },
     },
-    components: {TimeSelector, DirectionSelector},
     methods: {
-      swapDirections() {
-        store.actions.swapDirections(this.listName, this.index);
-      },
       handleDirection(direction) {
-        store.actions.updateTrip(this.listName, this.index, {direction});
+        this.updateTrip(this.listName, this.index, { direction });
       },
       handleTime(time) {
-        store.actions.updateTrip(this.listName, this.index, {time});
-      },
-      removeTrip() {
-        store.actions.removeTrip(this.listName, this.index);
+        this.updateTrip(this.listName, this.index, { time });
       },
     },
+    components: { TimeSelector, DirectionSelector },
   };
 </script>

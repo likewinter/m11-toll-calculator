@@ -1,5 +1,5 @@
 export const ADD_TRIP_LIST = 'ADD_TRIP_LIST';
-export const ADD_TRIP = 'ADD_TRIP';
+export const ADD_TRIPS = 'ADD_TRIPS';
 export const REMOVE_TRIP = 'REMOVE_TRIP';
 export const UPDATE_TRIP = 'UPDATE_TRIP';
 export const CLEAN_LIST = 'CLEAN_LIST';

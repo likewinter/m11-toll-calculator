@@ -1,12 +1,12 @@
-import {merge, extend} from 'lodash';
+import { merge } from 'lodash';
 import * as types from './mutation-types';
 
 export default {
   [types.ADD_TRIP_LIST](state, listName) {
-    state.tripLists = extend({}, state.tripLists, {[listName]: []});
+    state.tripLists = { ...state.tripLists, [listName]: [] };
   },
-  [types.ADD_TRIP](state, listName, trip) {
-    state.tripLists[listName].push(trip);
+  [types.ADD_TRIPS](state, listName, trips) {
+    state.tripLists[listName] = [...state.tripLists[listName], ...trips];
   },
   [types.REMOVE_TRIP](state, listName, index) {
     state.tripLists[listName].splice(index, 1);

@@ -29,19 +29,23 @@
 
 <script>
   import store from '../store';
-  import {calculateCosts} from '../utils/calculator';
+  import { calculateCosts } from '../utils/calculator';
 
   export default {
     props: ['listName'],
+    store,
+    vuex: {
+      getters: {
+        rates: state => state.rates,
+        allTripLists: state => state.tripLists,
+      },
+    },
     computed: {
       costs() {
         return calculateCosts(this.tripList, this.rates);
       },
-      rates() {
-        return store.state.rates;
-      },
       tripList() {
-        return store.state.tripLists[this.listName];
+        return this.allTripLists[this.listName];
       },
     },
   };

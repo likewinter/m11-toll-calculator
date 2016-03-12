@@ -7,16 +7,23 @@
   import TripList from './trip_list';
   import Costs from './costs';
   import store from '../store';
+  import { addTripList } from '../store/actions';
 
   const listName = 'multiple';
 
   export default {
     data() {
-      return {listName};
+      return { listName };
+    },
+    store,
+    vuex: {
+      actions: {
+        addTripList,
+      },
     },
     created() {
-      store.actions.addTripList(listName);
+      this.addTripList(listName);
     },
-    components: {TripList, Costs},
+    components: { TripList, Costs },
   };
 </script>

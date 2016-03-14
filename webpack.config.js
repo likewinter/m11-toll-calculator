@@ -33,7 +33,7 @@ var publicPath = isProduction ? '/m11/' : 'http://localhost:8080/';
 module.exports = {
   entry: {
     bundle: './scripts/main.js',
-    vendors: ['vue', 'vue-resource', 'vue-router', 'lodash', 'bootstrap.native']
+    vendors: ['vue', 'vue-router', 'isomorphic-fetch', 'lodash', 'bootstrap.native']
   },
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -72,5 +72,11 @@ module.exports = {
   babel: {
     presets: ['es2015', 'stage-0'],
     plugins: ['transform-runtime']
+  },
+  devServer: {
+    inline: true,
+    historyApiFallback: true,
+    quiet: true,
+    contentBase: 'public/'
   }
 }

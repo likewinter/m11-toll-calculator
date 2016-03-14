@@ -33,7 +33,7 @@
         </div>
         <router-view keep-alive></router-view>
         <footer class="text-right">
-            &copy; 2015 Anton Orlov <a href="mailto:anton@pinked.ru">anton@pinked.ru</a>
+            &copy; 2016 <a href="mailto:anton@pinked.ru">Anton Orlov</a>
         </footer>
     </div>
 </template>

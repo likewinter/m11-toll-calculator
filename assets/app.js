@@ -12,6 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const router = new VueRouter({
   linkActiveClass: 'active',
+  history: true,
 });
 
 router.map({

@@ -1,6 +1,6 @@
 <template>
-    <trip-list :list-name="listName" keep-alive></trip-list>
     <costs :list-name="listName"></costs>
+    <trip-list :list-name="listName" keep-alive></trip-list>
 </template>
 
 <script>

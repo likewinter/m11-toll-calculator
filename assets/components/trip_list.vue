@@ -1,23 +1,25 @@
 <style scoped>
+    .list {
+      margin-top: 40px;
+    }
     .expand-transition {
       transition: all .5s ease-in-out;
       max-height: 500px;
       overflow: hidden;
     }
     .expand-enter, .expand-leave {
-      max-height:0;
+      max-height: 0;
       opacity: 0;
     }
 </style>
 
 <template>
-  <div class="row">
+  <div class="row list">
     <trip
       v-for="trip in tripList"
       :trip="trip"
       :list-name="listName"
       :index="$index"
-      track-by="$index"
       transition="expand">
     </trip>
   </div>

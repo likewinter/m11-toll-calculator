@@ -1,13 +1,13 @@
-# RU-M11 Toll road fare calculator
+# M11(RU) Toll road fare calculator
 
 ## Frontend
 * Vue
 * Vue Router
 * Vuex (Redux implementation for Vue)
-* Bootstrap 3 + native js (bootstrap.native) + bootswatch themes
+* Bootstrap 3 + native js (bootstrap.native) + bootswatch
 * Lodash 4
 * Polyfills: fetch & Promise
 
 ##Backend
 * Node
-* Cheerio (for parsing rates in HTML)
+* Cheerio (parsing rates from HTML)
